@@ -38,22 +38,22 @@ def hello():
     name = request.args.get("name", "World")
     return f'Hello, {escape(name)}!'
 
-@app.route('/toto')
-def hello():
-    return '''
-    <!DOCTYPE>
-    <html>
-        <head>
-            <title>My super page</title>
-        </head>
-        <body>
-            <div>
-                This is a Le Wagon API site, please use rather the /predict_fare entry point
-                <img src="https://dwj199mwkel52.cloudfront.net/assets/core/home/coding-school-that-cares-alumni-025e665def0e2f5a9a539cd2f8762fedbd4c5074a725ebed08570a5bdacc45f7.jpg">
-            </div>
-        </body>
-    </html>
-    '''
+# @app.route('/toto')
+# def hello():
+#     return '''
+#     <!DOCTYPE>
+#     <html>
+#         <head>
+#             <title>My super page</title>
+#         </head>
+#         <body>
+#             <div>
+#                 This is a Le Wagon API site, please use rather the /predict_fare entry point
+#                 <img src="https://dwj199mwkel52.cloudfront.net/assets/core/home/coding-school-that-cares-alumni-025e665def0e2f5a9a539cd2f8762fedbd4c5074a725ebed08570a5bdacc45f7.jpg">
+#             </div>
+#         </body>
+#     </html>
+#     '''
 
 @app.route('/predict_fare', methods=['GET'])
 def predict_fare():
