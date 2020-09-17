@@ -32,6 +32,7 @@ handle_exceptions(app)
 
 # bugsnag.notify(Exception('Test error'))
 
+
 @app.route('/')
 def hello():
     # get param from http://127.0.0.1:5000/?name=value
@@ -54,6 +55,7 @@ def hello():
 #         </body>
 #     </html>
 #     '''
+
 
 @app.route('/predict_fare', methods=['GET'])
 def predict_fare():
@@ -91,6 +93,7 @@ def predict_fare():
 
     return dict(
         prediction=pred)
+
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
