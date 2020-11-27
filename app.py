@@ -59,7 +59,45 @@ def hello():
 #     '''
 
 
-@app.route('/predict_fare', methods=['GET', 'POST'])
+@app.route('/predict_fare', methods=['POST'])
+def predict_fare_post():
+
+    # get request arguments
+    key = "2020-10-10 10:10:10 UTC"
+    pickup_datetime = request.form.get('pickup_datetime')
+    pickup_longitude = float(request.form.get('pickup_longitude'))
+    pickup_latitude = float(request.form.get('pickup_latitude'))
+    dropoff_longitude = float(request.form.get('dropoff_longitude'))
+    dropoff_latitude = float(request.form.get('dropoff_latitude'))
+    passenger_count = int(request.form.get('passenger_count'))
+
+    # build X ⚠️ beware to the order of the parameters ⚠️
+    X = pd.DataFrame(dict(
+        key=[key],
+        pickup_datetime=[pickup_datetime],
+        pickup_longitude=[pickup_longitude],
+        pickup_latitude=[pickup_latitude],
+        dropoff_longitude=[dropoff_longitude],
+        dropoff_latitude=[dropoff_latitude],
+        passenger_count=[passenger_count]))
+
+    # print(X_test.dtypes)
+
+    # TODO: get model from GCP
+    # pipeline = get_model_from_gcp()
+    pipeline = joblib.load('model.joblib')
+
+    # make prediction
+    results = pipeline.predict(X)
+
+    # convert response from numpy to python type
+    pred = float(results[0])
+
+    return dict(
+        prediction=pred)
+
+
+@app.route('/predict_fare', methods=['GET'])
 def predict_fare():
 
     # get request arguments
