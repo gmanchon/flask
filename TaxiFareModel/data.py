@@ -17,16 +17,13 @@ def get_data(nrows=10000, local=False, optimize=False, **kwargs):
     """method to get the training data (or a portion of it) from google cloud bucket"""
     # Add Client() here
     client = storage.Client()
-    if local:
-        path = "~/Documents/projets/WAGON/taxi-fare-train.csv"
-    else:
-        path = "gs://{}/{}".format(BUCKET_NAME, BUCKET_TRAIN_DATA_PATH)
+    path = "s3://wagon-public-datasets/taxi-fare-train.csv"
     if optimize:
         cols = infer_dtypes(path)
         cols = {k: v for k, v in cols.items() if "latitude" not in k and "longitude" not in k}
-        df = pd.read_csv(path, nrows=nrows, dtype=cols)
+        df = pd.read_csv(path, nrows=100, dtype=cols)
     else:
-        df = pd.read_csv(path, nrows=nrows)
+        df = pd.read_csv(path, nrows=100)
     return df
 
 

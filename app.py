@@ -59,7 +59,7 @@ def hello():
 #     '''
 
 
-@app.route('/predict_fare', methods=['GET'])
+@app.route('/predict_fare', methods=['GET', 'POST'])
 def predict_fare():
 
     # get request arguments

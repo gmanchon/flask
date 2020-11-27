@@ -1,32 +1,12 @@
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import setup, find_packages
 
-REQUIRED_PACKAGES = [
-    'Flask==1.1.1',
-    'Flask-Cors==3.0.8',
-    'python-dotenv==0.14.0',
-    'numpy==1.18.4',
-    'pandas==0.24.2',
-    'joblib==0.14.1',
-    'scikit-learn==0.20.4',
-    'scipy==1.2.2',
-    'xgboost==1.1.1',
-    'mlflow==1.8.0',
-    'google-cloud-storage==1.26.0',
-    'gcsfs==0.6.0',
-    'pygeohash',
-    'category_encoders',
-    'psutil==5.7.0',
-    'pygeohash==1.2.0',
-    'termcolor==1.1.0',
-    'memoized-property==1.0.3',
-    'category_encoders==2.2.2']
+with open("requirements.txt") as f:
+    content = f.readlines()
+requirements = [x.strip() for x in content]
 
-setup(
-    name='TaxiFareModelAPI',
-    version='1.0',
-    install_requires=REQUIRED_PACKAGES,
-    packages=find_packages(),
-    include_package_data=True,
-    description='taxi fare model api'
-)
+setup(name="project",
+      version="1.0",
+      description="Package description",
+      packages=find_packages(),
+      include_package_data=True,  # includes in package files from MANIFEST.in
+      install_requires=requirements)

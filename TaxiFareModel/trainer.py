@@ -69,6 +69,7 @@ class Trainer(object):
 
     def get_estimator(self):
         estimator = self.kwargs.get("estimator", self.ESTIMATOR)
+        estimator = "Linear"
         if estimator == "Lasso":
             model = Lasso()
         elif estimator == "Ridge":
@@ -246,7 +247,7 @@ if __name__ == "__main__":
                   gridsearch=False,
                   optimize=False,
                   estimator="xgboost",
-                  mlflow=True,  # set to True to log params to mlflow
+                  mlflow=False,  # set to True to log params to mlflow
                   experiment_name=experiment)
     print("############   Loading Data   ############")
     df = get_data(**params)
