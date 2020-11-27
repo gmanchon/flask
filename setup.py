@@ -4,7 +4,6 @@ from setuptools import setup
 REQUIRED_PACKAGES = [
     'Flask==1.1.1',
     'Flask-Cors==3.0.8',
-    'bugsnag[flask]==3.9.0',
     'python-dotenv==0.14.0',
     'numpy==1.18.4',
     'pandas==0.24.2',

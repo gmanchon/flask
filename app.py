@@ -1,34 +1,36 @@
 
 from flask import Flask, escape, request
+from flask_cors import CORS
 
-import bugsnag
-from bugsnag.flask import handle_exceptions
+# import bugsnag
+# from bugsnag.flask import handle_exceptions
 
 import pandas as pd
 
 import joblib
 
 # get env parameters
-import os
-from os.path import join, dirname
-from dotenv import load_dotenv
+# import os
+# from os.path import join, dirname
+# from dotenv import load_dotenv
 
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
+# dotenv_path = join(dirname(__file__), '.env')
+# load_dotenv(dotenv_path)
 
-BUGSNAG_API_KEY = os.environ.get('BUGSNAG_API_KEY')
+# BUGSNAG_API_KEY = os.environ.get('BUGSNAG_API_KEY')
 
 # initialize bugsnap
-bugsnag.configure(
-    api_key='BUGSNAG_API_KEY',
-    project_root='/path/to/your/app',
-)
+# bugsnag.configure(
+#     api_key='BUGSNAG_API_KEY',
+#     project_root='/path/to/your/app',
+# )
 
 # create flask app
 app = Flask(__name__)
+CORS(app)
 
 # handle bugsnag
-handle_exceptions(app)
+# handle_exceptions(app)
 
 # bugsnag.notify(Exception('Test error'))
 
