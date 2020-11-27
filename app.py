@@ -1,5 +1,5 @@
 
-from flask import Flask, escape, request
+from flask import Flask, escape, request, request, jsonify
 from flask_cors import CORS
 
 # import bugsnag
@@ -62,14 +62,16 @@ def hello():
 @app.route('/predict_fare', methods=['POST'])
 def predict_fare_post():
 
+    content = request.json
+
     # get request arguments
     key = "2020-10-10 10:10:10 UTC"
-    pickup_datetime = request.form.get('pickup_datetime')
-    pickup_longitude = float(request.form.get('pickup_longitude'))
-    pickup_latitude = float(request.form.get('pickup_latitude'))
-    dropoff_longitude = float(request.form.get('dropoff_longitude'))
-    dropoff_latitude = float(request.form.get('dropoff_latitude'))
-    passenger_count = int(request.form.get('passenger_count'))
+    pickup_datetime = content.get('pickup_datetime')
+    pickup_longitude = float(content.get('pickup_longitude'))
+    pickup_latitude = float(content.get('pickup_latitude'))
+    dropoff_longitude = float(content.get('dropoff_longitude'))
+    dropoff_latitude = float(content.get('dropoff_latitude'))
+    passenger_count = int(content.get('passenger_count'))
 
     # build X ⚠️ beware to the order of the parameters ⚠️
     X = pd.DataFrame(dict(
@@ -93,8 +95,8 @@ def predict_fare_post():
     # convert response from numpy to python type
     pred = float(results[0])
 
-    return dict(
-        prediction=pred)
+    return jsonify(dict(
+        predictions=[pred]))
 
 
 @app.route('/predict_fare', methods=['GET'])
