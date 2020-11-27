@@ -63,7 +63,7 @@ def hello():
 def predict_fare():
 
     # get request arguments
-    key = request.args.get('key')
+    key = "2020-10-10 10:10:10 UTC"
     pickup_datetime = request.args.get('pickup_datetime')
     pickup_longitude = float(request.args.get('pickup_longitude'))
     pickup_latitude = float(request.args.get('pickup_latitude'))
